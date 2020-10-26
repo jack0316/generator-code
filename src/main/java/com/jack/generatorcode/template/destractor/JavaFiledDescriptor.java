@@ -1,10 +1,16 @@
 package com.jack.generatorcode.template.destractor;
 
+import java.util.List;
+
 public class JavaFiledDescriptor {
 
     private String fieldType;
 
-    private String fieldDoc;
+    private List<String> fieldDescriptions;
+
+    private List<String> annotations;
+
+    private String modifier;
 
     private String fieldName;
 
@@ -16,14 +22,6 @@ public class JavaFiledDescriptor {
         this.fieldType = fieldType;
     }
 
-    public String getFieldDoc() {
-        return fieldDoc;
-    }
-
-    public void setFieldDoc(String fieldDoc) {
-        this.fieldDoc = fieldDoc;
-    }
-
     public String getFieldName() {
         return fieldName;
     }
@@ -31,4 +29,29 @@ public class JavaFiledDescriptor {
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
     }
+
+    public List<String> getFieldDescriptions() {
+        return fieldDescriptions;
+    }
+
+    public void setFieldDescriptions(List<String> fieldDescriptions) {
+        this.fieldDescriptions = fieldDescriptions;
+    }
+
+    public List<String> getAnnotations() {
+        return annotations;
+    }
+
+    public void setAnnotations(List<String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
+
 }

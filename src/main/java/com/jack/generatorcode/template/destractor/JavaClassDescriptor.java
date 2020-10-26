@@ -5,7 +5,6 @@ import java.util.List;
 
 public class JavaClassDescriptor {
 
-    private final String LINE = "\n";
 
     private final String className;
 
@@ -89,57 +88,31 @@ public class JavaClassDescriptor {
         return modifier;
     }
 
-    public String getClassType() {
-        StringBuilder stringBuilder = new StringBuilder();
-        classType.forEach(type->stringBuilder.append(" ").append(type).append(" "));
-        return stringBuilder.toString();
-    }
-
-    public String getDescriptions() {
-        StringBuilder stringBuilder = new StringBuilder();
-        this.descriptions.forEach(description -> stringBuilder.append(description).append(LINE));
-        return stringBuilder.toString();
-    }
-
-    public String getSuperClassNames() {
-        if (superClassNames.isEmpty()) return "";
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" extends ");
-        for (int i = 0; i < superClassNames.size(); i++) {
-            stringBuilder.append(superClassNames.get(i));
-            if (i != superClassNames.size() -1){
-                stringBuilder.append(",");
-            }
-        }
-        return stringBuilder.toString();
-    }
-
-    public String getInterfaceNames() {
-        if (interfaceNames.isEmpty()) return "";
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" extends ");
-        for (int i = 0; i < interfaceNames.size(); i++) {
-            stringBuilder.append(interfaceNames.get(i));
-            if (i != interfaceNames.size() -1){
-                stringBuilder.append(",");
-            }
-        }
-        return stringBuilder.toString();
-    }
-
-    public String getAnnotationNames() {
-        StringBuilder stringBuilder = new StringBuilder();
-        annotationNames.forEach(annotation -> stringBuilder.append(annotation).append(LINE));
-        return stringBuilder.toString();
-    }
-
-    public String getImports() {
-        StringBuilder stringBuilder = new StringBuilder();
-        imports.forEach(importName -> stringBuilder.append("import ").append(importName).append(";").append(LINE));
-        return stringBuilder.toString();
-    }
-
     public List<JavaFiledDescriptor> getFields() {
         return fields;
+    }
+
+    public List<String> getClassType() {
+        return classType;
+    }
+
+    public List<String> getDescriptions() {
+        return descriptions;
+    }
+
+    public List<String> getSuperClassNames() {
+        return superClassNames;
+    }
+
+    public List<String> getInterfaceNames() {
+        return interfaceNames;
+    }
+
+    public List<String> getAnnotationNames() {
+        return annotationNames;
+    }
+
+    public List<String> getImports() {
+        return imports;
     }
 }
