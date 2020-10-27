@@ -1,5 +1,6 @@
 package com.jack.generatorcode.template.destractor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JavaFiledDescriptor {
@@ -13,6 +14,14 @@ public class JavaFiledDescriptor {
     private String modifier;
 
     private String fieldName;
+
+    public JavaFiledDescriptor(String fieldType, String modifier, String fieldName) {
+        this.annotations = new ArrayList<>();
+        this.fieldDescriptions = new ArrayList<>();
+        this.fieldType = fieldType;
+        this.modifier = modifier;
+        this.fieldName = fieldName;
+    }
 
     public String getFieldType() {
         return fieldType;
