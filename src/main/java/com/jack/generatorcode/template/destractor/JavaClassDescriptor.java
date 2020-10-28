@@ -26,6 +26,8 @@ public class JavaClassDescriptor {
 
     private final List<JavaFiledDescriptor> fields;
 
+    private final List<JavaMethodDescriptor> methods;
+
     public JavaClassDescriptor(String className, String packageName, String modifier) {
         this.annotationNames = new ArrayList<>();
         this.superClassNames = new ArrayList<>();
@@ -34,6 +36,7 @@ public class JavaClassDescriptor {
         this.fields = new ArrayList<>();
         this.descriptions = new ArrayList<>();
         this.classType = new ArrayList<>();
+        this.methods = new ArrayList<>();
         this.className = className;
         this.packageName = packageName;
         this.modifier = modifier;
@@ -72,6 +75,11 @@ public class JavaClassDescriptor {
 
     public JavaClassDescriptor addSuperClassName(String superClassName){
         this.superClassNames.add(superClassName);
+        return this;
+    }
+
+    public JavaClassDescriptor addMethod(JavaMethodDescriptor method){
+        methods.add(method);
         return this;
     }
 
