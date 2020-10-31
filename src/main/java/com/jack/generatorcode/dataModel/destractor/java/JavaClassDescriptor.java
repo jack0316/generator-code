@@ -1,4 +1,4 @@
-package com.jack.generatorcode.template.destractor;
+package com.jack.generatorcode.dataModel.destractor.java;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ public class JavaClassDescriptor {
 
     private final String modifier;
 
-    private final List<String> classType;
+    private final List<String> identifiers;
 
     private final List<String> descriptions;
 
-    private final List<String> superClassNames;
+    private String superClassNames;
 
     private final List<String> interfaceNames;
 
@@ -30,16 +30,16 @@ public class JavaClassDescriptor {
 
     public JavaClassDescriptor(String className, String packageName, String modifier) {
         this.annotationNames = new ArrayList<>();
-        this.superClassNames = new ArrayList<>();
         this.interfaceNames = new ArrayList<>();
         this.imports = new ArrayList<>();
         this.fields = new ArrayList<>();
         this.descriptions = new ArrayList<>();
-        this.classType = new ArrayList<>();
+        this.identifiers = new ArrayList<>();
         this.methods = new ArrayList<>();
         this.className = className;
         this.packageName = packageName;
         this.modifier = modifier;
+        this.superClassNames = null;
     }
 
 
@@ -58,8 +58,8 @@ public class JavaClassDescriptor {
         return this;
     }
 
-    public JavaClassDescriptor addClassType(String typeName) {
-        this.classType.add(typeName );
+    public JavaClassDescriptor addIdentifier(String identifier) {
+        this.identifiers.add(identifier);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class JavaClassDescriptor {
     }
 
     public JavaClassDescriptor addSuperClassName(String superClassName){
-        this.superClassNames.add(superClassName);
+        this.superClassNames = superClassName;
         return this;
     }
 
@@ -100,15 +100,15 @@ public class JavaClassDescriptor {
         return fields;
     }
 
-    public List<String> getClassType() {
-        return classType;
+    public List<String> getIdentifiers() {
+        return identifiers;
     }
 
     public List<String> getDescriptions() {
         return descriptions;
     }
 
-    public List<String> getSuperClassNames() {
+    public String getSuperClassNames() {
         return superClassNames;
     }
 
@@ -122,5 +122,9 @@ public class JavaClassDescriptor {
 
     public List<String> getImports() {
         return imports;
+    }
+
+    public List<JavaMethodDescriptor> getMethods() {
+        return methods;
     }
 }

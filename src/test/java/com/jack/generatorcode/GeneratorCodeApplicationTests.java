@@ -1,8 +1,9 @@
 package com.jack.generatorcode;
 
-import com.jack.generatorcode.template.JavaTemplate;
-import com.jack.generatorcode.template.destractor.JavaClassDescriptor;
-import com.jack.generatorcode.template.destractor.JavaFiledDescriptor;
+import com.jack.generatorcode.dataModel.database.ColumnModel;
+import com.jack.generatorcode.dataModel.database.TableModel;
+import com.jack.generatorcode.template.java.EntityTemplate;
+import com.jack.generatorcode.template.java.JavaTemplate;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,11 +17,19 @@ class GeneratorCodeApplicationTests {
 
     @Test
     void contextLoads() throws IOException {
-        JavaClassDescriptor descriptor = new JavaClassDescriptor("User","com.jack.code","public");
-        JavaFiledDescriptor filedDescriptor = new JavaFiledDescriptor("String","public","name");
-        descriptor.addImport("java.util.Date")
-                .addDescription("/** user */").addField(filedDescriptor);
-        JavaTemplate template = new JavaTemplate(descriptor);
+        TableModel table = new TableModel();
+        table.setComment("测试");
+        table.setPrimaryKey("id");
+        table.setTableName("user");
+        table.setDatabaseName("test");
+        ColumnModel columnModel = new ColumnModel();
+        columnModel.setColumnName("id");
+        columnModel.setComment("编号");
+        columnModel.setJdbcType("integer");
+        columnModel.setJavaType("Long");
+        columnModel.setTypeLength(10);
+        table.addColumn(columnModel);
+        JavaTemplate template = new EntityTemplate(table,"com.jack.code");
         File dir = new File("./tmp/com/jack/code/");
         if (!dir.exists()) dir.mkdirs();
         File file = template.toFile();

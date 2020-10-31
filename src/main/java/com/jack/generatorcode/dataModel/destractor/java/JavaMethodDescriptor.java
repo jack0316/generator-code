@@ -1,4 +1,4 @@
-package com.jack.generatorcode.template.destractor;
+package com.jack.generatorcode.dataModel.destractor.java;
 
 import org.springframework.util.StringUtils;
 
@@ -11,7 +11,7 @@ public class JavaMethodDescriptor {
 
     private final String methodName;
 
-    private final String methodType;
+    private final String returnType;
 
     private final String modifier;
 
@@ -23,13 +23,15 @@ public class JavaMethodDescriptor {
 
     private final List<String> bodies;
 
+    private final List<String> identifiers;
+
     private final Map<String,String> params;
 
     private final Map<String,String> paramAnnotations;
 
-    public JavaMethodDescriptor(String methodName, String methodType, String modifier, boolean abstractMethod) {
+    public JavaMethodDescriptor(String modifier, String returnType,String methodName,  boolean abstractMethod) {
         this.methodName = methodName;
-        this.methodType = methodType;
+        this.returnType = returnType;
         this.modifier = modifier;
         this.abstractMethod = abstractMethod;
         annotations = new ArrayList<>();
@@ -37,6 +39,7 @@ public class JavaMethodDescriptor {
         bodies = new ArrayList<>();
         params = new HashMap<>();
         paramAnnotations = new HashMap<>();
+        identifiers = new ArrayList<>();
     }
 
     public JavaMethodDescriptor addDescription(String description){
@@ -62,12 +65,17 @@ public class JavaMethodDescriptor {
         return this;
     }
 
+    public JavaMethodDescriptor addIdentifier(String identifier){
+        identifiers.add(identifier);
+        return this;
+    }
+
     public String getMethodName() {
         return methodName;
     }
 
-    public String getMethodType() {
-        return methodType;
+    public String getReturnType() {
+        return returnType;
     }
 
     public String getModifier() {
@@ -78,5 +86,28 @@ public class JavaMethodDescriptor {
         return abstractMethod;
     }
 
+    public List<String> getDescriptions() {
+        return descriptions;
+    }
+
+    public List<String> getAnnotations() {
+        return annotations;
+    }
+
+    public List<String> getBodies() {
+        return bodies;
+    }
+
+    public List<String> getIdentifiers() {
+        return identifiers;
+    }
+
+    public Map<String, String> getParams() {
+        return params;
+    }
+
+    public Map<String, String> getParamAnnotations() {
+        return paramAnnotations;
+    }
 
 }
