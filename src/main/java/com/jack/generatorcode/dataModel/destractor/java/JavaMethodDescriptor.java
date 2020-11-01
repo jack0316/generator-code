@@ -17,17 +17,17 @@ public class JavaMethodDescriptor {
 
     private final boolean abstractMethod;
 
-    private final List<String> descriptions;
+    private List<String> descriptions;
 
-    private final List<String> annotations;
+    private List<String> annotations;
 
-    private final List<String> bodies;
+    private List<String> bodies;
 
-    private final List<String> identifiers;
+    private List<String> identifiers;
 
-    private final Map<String,String> params;
+    private Map<String,String> params;
 
-    private final Map<String,String> paramAnnotations;
+    private Map<String,String> paramAnnotations;
 
     public JavaMethodDescriptor(String modifier, String returnType,String methodName,  boolean abstractMethod) {
         this.methodName = methodName;
@@ -110,4 +110,27 @@ public class JavaMethodDescriptor {
         return paramAnnotations;
     }
 
+    public void setDescriptions(List<String> descriptions) {
+        this.descriptions = descriptions;
+    }
+
+    public void setAnnotations(List<String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public void setBodies(List<String> bodies) {
+        this.bodies = bodies;
+    }
+
+    public void setIdentifiers(List<String> identifiers) {
+        this.identifiers = identifiers;
+    }
+
+    public void setParams(Map<String, String> params) {
+        this.params = params;
+    }
+
+    public void setParamAnnotations(Map<String, String> paramAnnotations) {
+        this.paramAnnotations = paramAnnotations;
+    }
 }

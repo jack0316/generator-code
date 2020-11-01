@@ -7,15 +7,15 @@ public class JavaFiledDescriptor {
 
     private final String fieldType;
 
-    private final List<String> fieldDescriptions;
+    private  List<String> fieldDescriptions;
 
-    private final List<String> annotations;
+    private  List<String> annotations;
 
-    private final List<String> identifiers;
+    private  List<String> identifiers;
 
-    private final String modifier;
+    private  String modifier;
 
-    private final String fieldName;
+    private  String fieldName;
 
     private String value;
 
@@ -74,5 +74,25 @@ public class JavaFiledDescriptor {
 
     public List<String> getIdentifiers() {
         return identifiers;
+    }
+
+    public void setFieldDescriptions(List<String> fieldDescriptions) {
+        this.fieldDescriptions = fieldDescriptions;
+    }
+
+    public void setAnnotations(List<String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public void setIdentifiers(List<String> identifiers) {
+        this.identifiers = identifiers;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 }

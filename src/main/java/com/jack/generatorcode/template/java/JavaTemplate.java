@@ -27,7 +27,7 @@ public class JavaTemplate extends TemplateAbstract {
     }
 
 
-    public String getClassType() {
+    public String getClassIdentifier() {
         StringBuilder stringBuilder = new StringBuilder();
         this.descriptor.getIdentifiers().forEach(identifier->stringBuilder.append(SPACE).append(identifier).append(SPACE));
         return stringBuilder.toString();
@@ -39,7 +39,7 @@ public class JavaTemplate extends TemplateAbstract {
         return stringBuilder.toString();
     }
 
-    public String getSuperClassNames() {
+    public String getSuperClassName() {
         String superClassNames = this.descriptor.getSuperClassNames();
         if (StringUtils.isEmpty(superClassNames)) return SPACE;
         StringBuilder stringBuilder = new StringBuilder();
@@ -133,10 +133,10 @@ public class JavaTemplate extends TemplateAbstract {
         stringBuilder.append(getDescriptions());
         stringBuilder.append(getAnnotationNames());
         stringBuilder.append(descriptor.getModifier()).append(SPACE);
-        stringBuilder.append(getClassType());
-        stringBuilder.append("class").append(SPACE);
+        stringBuilder.append(getClassIdentifier());
+        stringBuilder.append(descriptor.getClassType()).append(SPACE);
         stringBuilder.append(descriptor.getClassName()).append(SPACE);
-        stringBuilder.append(getSuperClassNames()).append(SPACE);
+        stringBuilder.append(getSuperClassName()).append(SPACE);
         stringBuilder.append(getInterfaceNames()).append(SPACE);
         stringBuilder.append("{").append(LINE);
         stringBuilder.append(getFields()).append(LINE);
@@ -145,16 +145,19 @@ public class JavaTemplate extends TemplateAbstract {
         return stringBuilder.toString();
     }
 
-    public File toFile(){
+    public void createFile() {
         String className = this.descriptor.getClassName();
-        File file = new File(className+".java");
-        try(FileOutputStream fos = new FileOutputStream(file)) {
+        File dir = new File(descriptor.getPackageName().replace(".","/"));
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+        File file = new File(dir,className + ".java");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
             String content = toFileContent();
             fos.write(content.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return file;
     }
 
 

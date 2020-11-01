@@ -12,6 +12,8 @@ public class JavaClassDescriptor {
 
     private final String modifier;
 
+    private String classType;
+
     private final List<String> identifiers;
 
     private final List<String> descriptions;
@@ -126,5 +128,13 @@ public class JavaClassDescriptor {
 
     public List<JavaMethodDescriptor> getMethods() {
         return methods;
+    }
+
+    public String getClassType() {
+        return classType;
+    }
+
+    public void setClassType(String classType) {
+        this.classType = classType;
     }
 }
